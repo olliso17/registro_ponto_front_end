@@ -3,13 +3,11 @@
     width: 37vw;
     height: 20vh;
     min-height: 200px;
-    top: 314px;
-    left: 457px;
     gap: 0px;
     border-radius: 4px 0px 0px 0px;
     opacity: 0px;
     display: flex;
-    align-items: start;
+    align-items: center;
     flex-direction: column;
     justify-content: space-between;
 }

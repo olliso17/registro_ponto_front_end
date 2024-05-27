@@ -1,28 +1,42 @@
-import classes from "./FormComponent.module.css"
-import Button from '../button/Button';
-import Top from "../top/Top";
-import{ Timer, TimerStatus } from "../hooks/time";
+import classes from "./FormComponent.module.css";
+import { Timer, TimerStatus } from "../hooks/time";
 import CardComponent from "../card/CardComponent";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 type Props = {
-    name: string
-    userData: any
-    time:Timer
-    status:TimerStatus
-}
+    userData: any;
+    
+};
 
-const FormComponent = ({ name , userData, time, status}: Props) => {
+const FormComponent = ({ userData }: Props) => {
+    const [workedHours, setWorkedHours] = useState<any[]>([]);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/api/workedHours/created/${userData._id}`);
+                setWorkedHours(response.data);
+            } catch (error) {
+                console.error("Error fetching worked hours data", error);
+            }
+        };
+
+        if (userData._id) {
+            fetchUserData();
+        }
+    }, [userData._id]);
+
     return (
         <div className={classes.container}>
-            <Top time={time} userData={userData} status={status}/>
-            <Button name={name} onClick={()=>{}}/>
             <p className={classes.text}>Dias anteriores</p>
             <div className={classes.form}>
-               <CardComponent/>
+                {workedHours.map((worked, index) => (
+                    <CardComponent key={index} worked={worked} userData={userData} />
+                ))}
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default FormComponent
+export default FormComponent;

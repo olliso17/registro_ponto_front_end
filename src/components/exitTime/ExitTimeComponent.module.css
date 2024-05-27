@@ -1,0 +1,11 @@
+.container {
+    min-width: 300px;
+    width: 37vw;
+    max-width: 365px;
+    gap: 0px;
+    opacity: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+}

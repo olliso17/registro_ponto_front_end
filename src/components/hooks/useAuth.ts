@@ -35,7 +35,7 @@ const useAuth = (): UseAuthReturn => {
             });
             const types = await client.get('type');
 
-            types.data.map(async (type: any) => {
+            types.data?.map(async (type: any) => {
                 if (type._name === 'entrada') {
                     await client.post('workedHours/create', {
                         employee_id: response.data._id,

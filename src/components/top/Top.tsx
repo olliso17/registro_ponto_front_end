@@ -14,9 +14,11 @@ const Top = ({ time, userData, status}: Props) => {
     useEffect(() => {
         setCurrentTime(time);
     }, [time]);
+  
 
     return (
         <>
+        
             <div className={classes.top}>
                 <p>Relógio de Ponto</p>
                 <p>{userData._hash} <br /><label className={classes.textUser}>{userData._name}</label></p>

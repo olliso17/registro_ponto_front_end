@@ -1,31 +1,23 @@
-
-import { FaPowerOff } from 'react-icons/fa';
-import ButtonIcon from "../button/ButtonIcon";
-import ButtonMenu from "../button/ButtonMenu";
 import FormComponent from "../form/FormComponent";
 import TimerComponent from "../time/TimeComponent";
 import classes from "./HomeComponent.module.css";
+import Menu from '../menu/Menu';
 
 type Props = {
     userData: any
+    userDataCreated: any
+    id: string | undefined
 }
 
-const HomeComponent = ({ userData }: Props) => {
+const HomeComponent = ({ userData, userDataCreated, id }: Props) => {
 
     return (
         <div className={classes.container}>
-            <div className={classes.menu}>
-                <div>
-                    <ButtonMenu name="Entry Time" router={`/entry_time/${userData._id}`} />
-                    <ButtonMenu name="Exite Time" router={`/exit_time/${userData._id}`} />
-                </div>
-
-                <ButtonIcon children={<FaPowerOff className="icon" />} />
-
-            </div>
+            {id ? (
+                <Menu name2={"Exite Time"} name1={"Entry Time"} router1={`/entry_time/${id}`} router2={`/exit_time/${id}`} />) : ('')}
 
             <TimerComponent userData={userData} />
-            <FormComponent userData={userData} />
+            <FormComponent userData={userDataCreated} />
         </div>
     )
 }

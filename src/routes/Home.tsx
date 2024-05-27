@@ -18,6 +18,7 @@ const Home = () => {
 
     return (
         <div className={classes.home}>
+            
             {userData && <HomeComponent userData={userData} />}
         </div>
     );

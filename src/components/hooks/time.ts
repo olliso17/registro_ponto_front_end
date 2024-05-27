@@ -8,7 +8,10 @@ export interface Timer {
 }
 
 const useTimer = () => {
-  const [status, setStatus] = useState<TimerStatus>('entrada');
+  const [status, setStatus] = useState<TimerStatus>(() => {
+    const storedStatus = localStorage.getItem('timerStatus');
+    return storedStatus ? (storedStatus as TimerStatus) : 'entrada';
+  });
   const [time, setTime] = useState<number>(() => {
     const storedTime = localStorage.getItem('timerTime');
     return storedTime ? parseInt(storedTime, 10) : 0;
@@ -18,6 +21,7 @@ const useTimer = () => {
   const startTimer = () => {
     setStatus('entrada');
     setTime(0);
+    localStorage.setItem('timerStatus', 'entrada');
     localStorage.setItem('timerTime', '0');
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -25,36 +29,22 @@ const useTimer = () => {
     intervalRef.current = setInterval(handleTick, 60000);
   };
 
-  const pauseTimer = async (): Promise<boolean> => {
-    setStatus('almoco_entrada')
-    return true;
+  const pauseTimer = async () => {
+    setStatus('almoco_entrada');
+    localStorage.setItem('timerStatus', 'almoco_entrada');
   };
 
-  const resumeTimer = async (): Promise<boolean> => {
-
+  const resumeTimer = async () => {
     setStatus('almoco_saida');
-    return true;
-
+    localStorage.setItem('timerStatus', 'almoco_saida');
   };
 
-  const stopTimer = async (): Promise<boolean> => {
+  const stopTimer = async () => {
     setStatus('saida');
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-
-    }
-    localStorage.removeItem('timerTime');
-    return true;
+    localStorage.setItem('timerStatus', 'saida');
+  
   };
 
-  const resetTimer = () => {
-    setStatus('entrada');
-    setTime(0);
-    localStorage.setItem('timerTime', '0');
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-  };
 
   const handleTick = () => {
     setTime((prevTime) => {
@@ -92,8 +82,7 @@ const useTimer = () => {
     startTimer,
     pauseTimer,
     resumeTimer,
-    stopTimer,
-    resetTimer,
+    stopTimer
   };
 };
 

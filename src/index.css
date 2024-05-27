@@ -5,5 +5,5 @@
   font-family: Montserrat;
   color: #FFF;
   background-color: #1E2733;
- 
+  overflow: hidden !important;
 }

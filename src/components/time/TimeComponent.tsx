@@ -11,27 +11,27 @@ type Props = {
 const TimerComponent = ({ userData }: Props) => {
     const { time, pauseTimer, resumeTimer, stopTimer, status } = useTimer();
 
-    const handlePause = async () => {
+    const handlePause = async (statusGet: string) => {
         await pauseTimer();
-        await saveWorkedHours();
+        await saveWorkedHours(statusGet);
         window.location.reload();
     };
 
-    const handleResume = async () => {
+    const handleResume = async (statusGet: string) => {
         await resumeTimer();
-        await saveWorkedHours();
+        await saveWorkedHours(statusGet);
         window.location.reload();
     };
 
-    const handleStop = async () => {
+    const handleStop = async (statusGet: string) => {
         await stopTimer();
-        await saveWorkedHours();
+        await saveWorkedHours(statusGet);
         window.location.reload();
     };
 
-    const saveWorkedHours = async () => {
+    const saveWorkedHours = async (statusGet: string) => {
         const types = await client.get('type');
-        const typeName = types.data.find((type: any) => type._name === status);
+        const typeName = types.data.find((type: any) => type._name === statusGet);
         if (typeName) {
             const hours = `${time.hours}h ${time.minutes}m`;
             await client.post('workedHours/create', {
@@ -46,9 +46,9 @@ const TimerComponent = ({ userData }: Props) => {
         <div>
             <Top time={time} status={status} userData={userData} />
             <div className={classes.buttonDiv}>
-                {status === "entrada" && <Button onClick={handlePause} name='Intervalo' />}
-                {status === "almoco_entrada" && <Button onClick={handleResume} name='Retomar Intervalo' />}
-                {status === "almoco_saida" && <Button onClick={handleStop} name='Finalizar Expediente' />}
+                {status === "entrada" && <Button onClick={() => handlePause('almoco_entrada')} name='Intervalo' />}
+                {status === "almoco_entrada" && <Button onClick={() => handleResume("almoco_saida")} name='Retomar Intervalo' />}
+                {status === "almoco_saida" && <Button onClick={() => handleStop("saida")} name='Finalizar Expediente' />}
             </div>
         </div>
     );

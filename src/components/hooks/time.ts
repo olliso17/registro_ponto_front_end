@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export type TimerStatus = 'entrada' | 'almoco_entrada' | 'almoco_saida' | 'saida';
 
@@ -30,19 +30,30 @@ const useTimer = () => {
   };
 
   const pauseTimer = async () => {
-    setStatus('almoco_entrada');
-    localStorage.setItem('timerStatus', 'almoco_entrada');
+    if (status === "entrada") {
+      setStatus('almoco_entrada');
+      localStorage.setItem('timerStatus', 'almoco_entrada');
+
+    }
+
   };
 
   const resumeTimer = async () => {
-    setStatus('almoco_saida');
-    localStorage.setItem('timerStatus', 'almoco_saida');
+    if (status === 'almoco_entrada') {
+      setStatus('almoco_saida');
+      localStorage.setItem('timerStatus', 'almoco_saida');
+    }
+
+
   };
 
   const stopTimer = async () => {
-    setStatus('saida');
-    localStorage.setItem('timerStatus', 'saida');
-  
+    if (status === 'almoco_saida') {
+      setStatus('saida');
+      localStorage.setItem('timerStatus', 'saida');
+    }
+
+
   };
 
 

@@ -46,9 +46,9 @@ const TimerComponent = ({ userData }: Props) => {
         <div>
             <Top time={time} status={status} userData={userData} />
             <div className={classes.buttonDiv}>
-                {status === "entrada" && <Button onClick={() => handlePause('almoco_entrada')} name='Intervalo' />}
-                {status === "almoco_entrada" && <Button onClick={() => handleResume("almoco_saida")} name='Fim Intervalo' />}
-                {status === "almoco_saida" && <Button onClick={() => handleStop("saida")} name='Finalizar Expediente' />}
+                {status === "entrada" && <Button onClick={() => handlePause('almoco_entrada')} name='Interval' />}
+                {status === "almoco_entrada" && <Button onClick={() => handleResume("almoco_saida")} name='End Interval' />}
+                {status === "almoco_saida" && <Button onClick={() => handleStop("saida")} name='End Workday' />}
             </div>
         </div>
     );

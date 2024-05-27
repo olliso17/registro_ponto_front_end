@@ -18,7 +18,7 @@ const FormComponent = ({ userData }: Props) => {
 
     return (
         <div className={classes.container}>
-            <p className={classes.text}>Dias anteriores</p>
+            <p className={classes.text}>Previous Days</p>
             <div className={classes.form}>
                 { workedHours?.map((worked: any, index: any) => (
                     <CardComponent key={index} worked={worked} userData={userData} />

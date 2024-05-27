@@ -1,0 +1,34 @@
+
+.card {
+    min-width: 300px;
+    width: 37vw;
+    max-width: 365px;
+    height: 41px;
+    display: flex;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    gap: 0px;
+    border-radius:5px;
+    opacity: 0px;
+    background-color: #D9D9D90D;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hours {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14.63px;
+    color: #CFCFCF;
+  
+    background-color: #D9D9D90D;
+}
+
+.time {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 14.63px;
+    background-color: #D9D9D90D;
+}

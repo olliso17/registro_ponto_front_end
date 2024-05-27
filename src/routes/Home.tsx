@@ -1,29 +1,24 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import HomeComponent from "../components/home/HomeComponent";
 import classes from "./Home.module.css";
-import axios from "axios";
+import useUserData from "../components/hooks/getEmployeeId";
 
 const Home = () => {
-    const { id } = useParams<{ id: string}>();
-    const [userData, setUserData] = useState<any>(null);
-   
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get(`http://localhost:3000/api/employee/${id}`);
-                setUserData(response.data);
-            } catch (error) {
-                console.error("Erro ao obter os dados do usuário:", error);
-            }
-        };
-        
-        fetchUserData();
-    }, [id]);
+    const { id } = useParams<{ id: string }>();
+
+    const { userData, error, loading } = useUserData(id);
+
+    if (loading) {
+        return <div>Carregando...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     return (
         <div className={classes.home}>
-            {userData && <HomeComponent userData={userData}/>}
+            {userData && <HomeComponent userData={userData} />}
         </div>
     );
 };

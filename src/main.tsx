@@ -7,24 +7,49 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import EntryTime from "./routes/EntryTime.tsx";
 import Login from './routes/Login.tsx';
 import ExitTime from './routes/ExitTime.tsx';
-
+import Home from './routes/Home.tsx';
+import ProtectedRoute from './routes/ProtectedRoute.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<App/>,
-    children:[
+    element: <App />,
+    children: [
       {
-        path:"/",
-        element:<Login/>
+        path: "/",
+        element: <Login />
       },
       {
-        path:"/entry_time",
-        element:<EntryTime/>
+        path: "/home/:id",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/home/:id",
+            element: <Home />
+          }
+
+        ]
       },
       {
-        path:"/exit_time",
-        element:<ExitTime/>
+
+        path: "/entry_time",
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/entry_time",
+            element: <EntryTime />
+          }
+        ]
+
+      },
+      {
+        path: "/exit_time",
+        element: <ProtectedRoute />,
+        children: [{
+          path: "/exit_time",
+          element: <ExitTime />
+        }]
+
       },
     ]
   }
@@ -32,6 +57,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )

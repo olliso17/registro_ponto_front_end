@@ -1,0 +1,42 @@
+.top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    font-family: Montserrat;
+    font-size: 11.6px;
+    font-weight: 700;
+    line-height: 14.14px;
+    text-align: center;
+    padding: 10px;
+}
+
+.textUser {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 14.63px;
+    text-align: center;
+    color: #CFCFCFB0;
+}
+
+.divHours {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 10px;
+}
+
+.textHours {
+    font-family: Montserrat;
+    font-size: 23.2px;
+    font-weight: 700;
+    line-height: 28.28px;
+    text-align: center;
+    color:#F5F5F5;
+
+}
+
+.buttonDiv{
+    display: flex;
+    flex-direction: column;
+}

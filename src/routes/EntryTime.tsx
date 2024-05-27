@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom';
-import FormComponent from '../components/form/FormComponent';
+import EntryTimeComponent from '../components/entrytime/EntryTimeComponent';
 import useUserData from '../components/hooks/getEmployeeId';
 import useTimer from '../components/hooks/time';
-import Top from '../components/top/Top';
 import classes from './EntryTime.module.css';
 
 const EntryTime = () => {
@@ -20,8 +19,7 @@ const EntryTime = () => {
 
     return (
         <div className={classes.entryTime}>
-            <Top time={time} userData={userData} status={status} />
-            <FormComponent userData={userData} />
+            <EntryTimeComponent time={time} status={status} userData={userData} />
         </div>
     )
 }

@@ -32,21 +32,21 @@ const router = createBrowserRouter([
       },
       {
 
-        path: "/entry_time",
+        path: "/entry_time:id",
         element: <ProtectedRoute />,
         children: [
           {
-            path: "/entry_time",
+            path: "/entry_time:id",
             element: <EntryTime />
           }
         ]
 
       },
       {
-        path: "/exit_time",
+        path: "/exit_time:id",
         element: <ProtectedRoute />,
         children: [{
-          path: "/exit_time",
+          path: "/exit_time:id",
           element: <ExitTime />
         }]
 

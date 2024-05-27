@@ -1,6 +1,7 @@
-import { useState, useEffect, ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { client } from '../../axios';
 import useTimer from './time';
 
 interface UseAuthReturn {
@@ -29,14 +30,14 @@ const useAuth = (): UseAuthReturn => {
     const handleConfirmClick = async () => {
         setErrorMessage(''); // Limpa mensagem de erro antes de tentar o login
         try {
-            const response = await axios.post('http://localhost:3000/api/employee/login', {
+            const response = await client.post('employee/login', {
                 hash: userCode
             });
-            const types = await axios.get('http://localhost:3000/api/type');
+            const types = await client.get('type');
 
             types.data.map(async (type: any) => {
                 if (type._name === 'entrada') {
-                    await axios.post('http://localhost:3000/api/workedHours/create', {
+                    await client.post('workedHours/create', {
                         employee_id: response.data._id,
                         type_id: type._id
                     });

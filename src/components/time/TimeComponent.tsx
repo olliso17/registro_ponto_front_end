@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { client } from '../../axios';
 import Button from '../button/Button';
 import useTimer from '../hooks/time';
 import Top from '../top/Top';
@@ -30,11 +30,11 @@ const TimerComponent = ({ userData }: Props) => {
     };
 
     const saveWorkedHours = async () => {
-        const types = await axios.get('http://localhost:3000/api/type');
+        const types = await client.get('type');
         const typeName = types.data.find((type: any) => type._name === status);
         if (typeName) {
             const hours = `${time.hours}h ${time.minutes}m`;
-            await axios.post('http://localhost:3000/api/workedHours/create', {
+            await client.post('workedHours/create', {
                 employee_id: userData._id,
                 type_id: typeName._id,
                 hours_worked: hours

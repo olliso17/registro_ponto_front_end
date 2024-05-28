@@ -1,4 +1,4 @@
-import { client } from '../../axios';
+import { client } from '../../server/axios';
 import Button from '../button/Button';
 import useTimer from '../hooks/time';
 import Top from '../top/Top';

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { client } from '../../axios';
+import { client } from '../../server/axios';
 
 
 const useUserData = (id: string | undefined) => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { client } from '../../axios';
+import { client } from '../../server/axios';
 import useTimer from './time';
 
 interface UseAuthReturn {

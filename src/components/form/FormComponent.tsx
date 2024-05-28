@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { client } from "../../axios";
 import CardComponent from "../card/CardComponent";
 import classes from "./FormComponent.module.css";
 

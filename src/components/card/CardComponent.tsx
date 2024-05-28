@@ -1,5 +1,3 @@
-
-import { useState } from "react";
 import useFormattedDateTime from "../hooks/dateFormat";
 import classes from "./CardComponent.module.css"
 

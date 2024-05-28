@@ -6,6 +6,7 @@ import classes from "./ExitTime.module.css";
 import useUserDataExit from '../components/hooks/getWorkedHoursExit';
 
 const ExitTime = () => {
+    
     const { id } = useParams<{ id: string }>();
     const { time, status } = useTimer();
     const { userData, error: userError, loading: userLoading } = useUserData(id);

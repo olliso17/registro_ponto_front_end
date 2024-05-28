@@ -14,19 +14,19 @@ const TimerComponent = ({ userData }: Props) => {
     const handlePause = async (statusGet: string) => {
         await pauseTimer();
         await saveWorkedHours(statusGet);
-        window.location.reload();
+        // window.location.reload();
     };
 
     const handleResume = async (statusGet: string) => {
         await resumeTimer();
         await saveWorkedHours(statusGet);
-        window.location.reload();
+        // window.location.reload();
     };
 
     const handleStop = async (statusGet: string) => {
         await stopTimer();
         await saveWorkedHours(statusGet);
-        window.location.reload();
+        // window.location.reload();
     };
 
     const saveWorkedHours = async (statusGet: string) => {

@@ -1,5 +1,7 @@
 import axios from "axios";
 
 export const client = axios.create({
-    baseURL: 'http://localhost:3000/api/',
+    // baseURL: 'http://localhost:3000/api/',
+    baseURL: 'https://registro-ponto-back.vercel.app/api/',
+
 });
